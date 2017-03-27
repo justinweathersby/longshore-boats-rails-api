@@ -1,0 +1,36 @@
+<div class="col-sm-12" style="padding:0">
+  <h1 class="page-heading">Messages</h1>
+
+  <div class="row text-right" style="padding: 2rem 0;">
+    <%= link_to root_path, :class => "btn btn-warning" do  %>
+      <i class="fa fa-chevron-circle-left fa-fw" aria-hidden="true"></i>Dashboard
+    <% end %>
+  </div>
+
+  <!-- BEGIN BORDERED TABLE PORTLET-->
+  <div class="portlet light portlet-fit ">
+    <div class="portlet-title text-center" style="border-bottom: 0;margin-bottom: 0;padding-bottom: 0;">
+        <div class="caption font-red-sunglo" style="width:100%">
+            <span class="caption-subject bold uppercase" style="font-size:20px"><%= @rep.name.present? ? @rep.name : @rep.email%></span><span> <i class="fa fa-comments-o fa-2x" aria-hidden="true"></i> </span>
+            <span class="caption-subject bold uppercase" style="font-size:20px"><%= @conversation.matched_name(@rep).present? ?  @conversation.matched_name(@rep) :  @conversation.matched_email(@rep) %></span>
+            <span class="caption-helper" style="display:block; padding:5px"><%= @conversation.last_message_date%></span>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <%- @messages.each do |msg| %>
+          <div class="row">
+            <div class="col-lg-4 text-right">
+              <h5 style="margin:0; margin-bottom:5px; font-weight:400">
+                <%= User.find(msg.user_id).name.present? ? User.find(msg.user_id).name : User.find(msg.user_id).email %>:
+                <span style="font-size: 10px;color: #c1c1c1; display:block"><%= msg.message_time %></span>
+              </h5>
+            </div>
+            <div class="col-lg-8">
+                <%= msg.body %>
+            </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
+  <!-- END BORDERED TABLE PORTLET-->
+</div>

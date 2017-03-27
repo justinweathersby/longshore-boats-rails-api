@@ -1,0 +1,67 @@
+<div class="col-xs-12 col-lg-8 col-lg-offset-2" style=" margin-top: 3vh; padding:15px;">
+  <div class="portlet light">
+    <div class="portlet-title">
+        <div class="caption font-red-sunglo">
+          <span class="caption-subject bold uppercase" style="font-size:24px">Create Push Notification</span><br />
+        </div>
+        <div class="actions">
+          <%= link_to :back, :class => "btn btn-circle btn-icon-only red" do %>
+            <i class="icon-trash"></i>
+          <% end %>
+          <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+      <%= form_for(@push_notification) do |f| %>
+        <% if @push_notification.errors.any? %>
+          <div style="visibility: hidden; height:0;">
+            <%= flash[:notice] = @push_notification.errors.full_messages %>
+          </div>
+        <% end %>
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <!-- <textarea class="form-control" rows="3" maxlength="256"></textarea> -->
+             <%= f.text_area :message, class: "form-control", rows: 3, maxlength: 256 %>
+            <label for="form_control_1">Message Text</label>
+            <span class="help-block" >Push Notification has a max of 256 characters...</span>
+        </div>
+
+        <h3 style="font-size: 16px; color: #999; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight: 800; letter-spacing: .2px;">Dealership Members</h3>
+
+        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="users_notifications_checkbox_table">
+            <thead>
+                <tr>
+                    <th>
+                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                            <input type="checkbox" class="group-checkable" data-set="#users_notifications_checkbox_table .checkboxes" />
+                            <span></span>
+                        </label>
+                    </th>
+                    <th> Name </th>
+                    <th> Email </th>
+                    <th> Joined </th>
+                </tr>
+            </thead>
+            <tbody>
+              <% User.where.not('device_token' => nil).each do |user| %>
+                <tr class="odd gradeX">
+                  <td>
+                      <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                        <%= check_box_tag 'tokens[]', user.id, false, :class => 'checkboxes' %>
+                          <span></span>
+                      </label>
+                  </td>
+                  <td><%= user.name %></td>
+                  <td><%= user.email %></td>
+                  <td style="text-align:center; "><%= user.created_at.strftime("%m/%d/%Y") %></td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+        <div class="row" style="text-align:center">
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.submit "Send", :type => "submit", :class=>"btn btn-primary", :style=>"border-radius: 5px !important; margin-top:10px; background: #FF5252; font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif'; text-shadow:none; font-variant:none; width: 92%; margin-top:30px" %>
+        </div>
+        <% end %>
+      </div>
+    </div>                    <!-- END EXAMPLE TABLE PORTLET-->
+  </div>

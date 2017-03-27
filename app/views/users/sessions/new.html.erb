@@ -1,0 +1,75 @@
+<!-- LOGIN FORM -->
+<div class="row" style="padding-top:40px">
+    <div class="col-xs-12 col-md-8 col-lg-6 col-md-offset-2 col-lg-offset-3" style="padding-left:0; padding-right:0">
+      <div style=" width:100%;">
+        <div class="row" style="margin-left:0; margin-right:0">
+            <div class="col-sm-12 form-box">
+              <%= form_for(resource, as: resource_name,  url: session_path(resource_name), :html => {:class => 'f1', :style => ''}) do |f| %>
+              <div style="visibility: hidden; height:0;">
+                <%= flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages %>
+              </div>
+                <div class="f1-steps" style="padding-bottom: 20px; margin-top:0">
+                  <div class="f1-step active" style="float:none; margin: 0 auto">
+                  	<div class="f1-step-icon" style="background: #455A64; border-radius: 50% !important"><i class="fa fa-user"></i></div>
+                  </div>
+                </div>
+                <div class="form-group form-md-line-input  form-md-floating-label" style="padding-bottom: 0px; margin-bottom:0">
+                  <div class="input-group" style="">
+                    <%= f.text_field :email, class: "form-control", style: "width:100%" %>
+                    <label for="form_control_1" style="font-size:12px;">Email</label>
+                    <span class="input-group-addon">
+                        <i class="fa fa-envelope-o"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group form-md-line-input form-md-floating-label" style="padding-bottom: 5px;">
+                  <div class="input-group">
+                    <%= f.password_field :password, autocomplete: "off", class: "form-control", style: "width:100%" %>
+                    <label for="form_control_1" style="font-size:12px;">Password</label>
+                    <span class="input-group-addon">
+                        <i class="fa fa-lock"></i>
+                    </span>
+                  </div>
+                </div>
+                  <div class="row" style="text-align:center">
+                    <%= f.submit 'Login', :class => "btn btn-next", :style => "border-radius: 5px !important; margin-top:10px; background: #FF5252; font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif'; text-shadow:none; font-variant:none; width: 92%"%>
+                  </div>
+                  <!-- <div class="row" style="text-align:center">
+                    <%= link_to 'Signup', new_user_registration_path, :class => "btn btn-default btn-sm", :style => "border-radius: 5px !important; margin-top:10px; font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif'; font-size: 10px; text-shadow:none; font-variant:none; text-decoration:none" %>
+                  </div> -->
+                <%= f.hidden_field :role, value: "gymManager" %>
+              <% end %>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- <div class="text-sm-center" style="padding:50px 0">
+	<div class="login-form-1">
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+			<div class="login-form-main-message"></div>
+			<div class="main-login-form">
+				<div class="login-group">
+					<div class="form-group">
+						<label for="email" class="sr-only">Username</label>
+						<%= f.email_field :email, class: "form-control", placeholder: "username"%>
+					</div>
+					<div class="form-group">
+						<label for="password" class="sr-only">Password</label>
+						<%= f.password_field :password, class: "form-control", placeholder: "password", autocomplete: "off" %>
+					</div>
+					<label class="custom-control custom-checkbox">
+						<%= f.check_box :remember_me, class: "custom-control-input" %>
+					  <span class="custom-control-indicator"></span>
+					  <span class="custom-control-description">Remember me</span>
+					</label>
+				</div>
+				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+			</div>
+			<div class="etc-login-form">
+				<p>forgot your password? <a href="#">click here</a></p>
+				<p>new user? <a href="#">create new account</a></p>
+			</div>
+		<% end %>
+	</div>
+</div> -->

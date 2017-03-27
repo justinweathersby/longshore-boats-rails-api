@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <h1 class="page-heading">Add Sales Representative</h1>
+  </div>
+  <hr style="margin-top:0"/>
+
+  <%= form_for :sales_rep, url: {action: "create"} do |f| %>
+
+    <div class="form-group row">
+      <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <%= f.email_field :email, :id=> "inputEmail", :class=> "form-control", :placeholder=>"Email", autofocus: true %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10">
+        <%= f.text_field :name, :id=> "inputName", :class=> "form-control", :placeholder=>"Name" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="exampleSelect1" class="col-sm-2 col-form-label">Dealership</label>
+      <div class="col-sm-10">
+        <%= select_tag :dealership_id, options_for_select(Dealership.all.collect{ |u| [u.name, u.id] }), class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group ">
+        <div class="col-xs-12" style="text-align:center">
+          <h4>Image Upload</h4>
+
+              <div class="fileinput fileinput-new" data-provides="fileinput">
+                  <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                    <% unless @user.image? %>
+                      <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                    <% else %>
+                      <%= image_tag(@user.image.url(:thumb), :style => "height:100%") %>
+                    <% end %>
+                  </div>
+                  <div>
+                      <span class="btn red btn-file">
+                          <span class="fileinput-new"> Select image </span>
+                          <span class="fileinput-exists"> Change </span>
+                          <%= f.file_field :image %>
+                        </span>
+
+                      <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                  </div>
+              </div>
+              <!-- <div class="clearfix margin-top-10" style="font-size:12px">
+                  <span class="label label-success">NOTE!</span> Image preview only works in IE10+, FF3.6+, Safari6.0+, Chrome6.0+ and Opera11.1+. </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <%= f.password_field :password, :id=> "inputPassword", :class=> "form-control", autocomplete: "off" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="inputPasswordConf" class="col-sm-2 col-form-label">Password Confirmation</label>
+      <div class="col-sm-10">
+        <%= f.password_field :password_confirmation, :id=> "inputPasswordConf", :class => "form-control",  autocomplete: "off" %>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <%= link_to 'Back', root_path, :class=>"btn btn-warning", style: "width:100%;"%>
+      </div>
+      <div class="col-sm-10">
+        <%= f.submit "Create", :type => "submit", :class=>"btn btn-primary", style: "width:100%;" %>
+      </div>
+    </div>
+  <% end %>
+</div>

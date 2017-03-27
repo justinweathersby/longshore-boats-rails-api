@@ -1,0 +1,50 @@
+<div class="col-sm-12" style="padding:0">
+  <div class="portlet light portlet-fit ">
+      <div class="portlet-body" style="padding-top: 15px;">
+          <div class="table-scrollable table-scrollable-borderless" style="overflow: visible !imporant;">
+              <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sales_rep_table">
+                  <thead>
+                      <tr class="uppercase" >
+                          <th style="color: #455A64"> # </th>
+                          <th style="color: #455A64">Image</th>
+                          <th style="color: #455A64">Email</th>
+                          <th style="color: #455A64">Name</th>
+                          <th style="color: #455A64">Dealership</th>
+                          <th style="color: #455A64">Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <% @sales_reps.each_with_index  do | rep, index| %>
+                      <tr>
+                          <td><%=  index+1 %></td>
+                          <td><%= image_tag rep.image.url(:thumb), style: "max-width:50px" %></td>
+                          <td><%= rep.email %></td>
+                          <td><%= rep.name %></td>
+                          <td><%= Dealership.with_role(:sales_rep, rep).first.name %></td>
+                          <td>
+                            <div class="actions" style="text-align:center">
+                              <div class="btn-group">
+                                  <a class="btn dark btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" style="text-decoration: none;"> Actions
+                                      <i class="fa fa-angle-down"></i>
+                                  </a>
+                                  <ul class="dropdown-menu pull-right">
+                                    <li>
+                                      <%= link_to 'Edit',  edit_sales_rep_path(rep) %>
+                                      <%= link_to 'Conversations', conversations_path(rep_id: rep.id) %>
+                                      <!-- <%= link_to 'Remove',  rep, method: :delete, data: {confirm: "Are you sure?"} %> -->
+                                    </li>
+                                  </ul>
+                              </div>
+                          </div>
+                         </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+              </table>
+              <div class="row" style="text-align:center">
+                <%= link_to 'Add Sales Representative', new_sales_rep_url, :class=>"btn btn-outline btn-sm active btn-blue", :style=>"border-radius: 5px !important; margin-top:10px; font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif'; text-shadow:none; font-variant:none; width: 92%; margin-top:30px" %>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

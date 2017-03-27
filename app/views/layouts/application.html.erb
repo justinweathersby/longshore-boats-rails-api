@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LongshoreBoats</title>
+    <%= csrf_meta_tags %>
+    <!-- Bootstrap Core CSS -->
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+      </script>
+    <![endif]-->
+  </head>
+  <body class="main-background">
+
+    <%= render 'layouts/navbar' %>
+    <div class="container" style="padding-top: 50px;">
+      <% flash.each do |name, msg| %>
+            <%= content_tag(:div,  msg.kind_of?(Array) ? msg.join(', ') : msg, class: "alert alert-info") if msg.length > 0%>
+        <% end %>
+      <%= yield %>
+    </div>
+    <%= javascript_include_tag 'application' %>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+
+    <script>
+    window.setTimeout(function () {
+         $(".alert-info").slideUp(500, function () {
+              $(".alert-info").hide();
+          });
+     }, 5000);
+   </script>
+  </body>
+</html>

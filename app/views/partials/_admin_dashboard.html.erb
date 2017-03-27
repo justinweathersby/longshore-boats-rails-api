@@ -1,0 +1,49 @@
+<div class="col-lg-12 ">
+  <div class="row">
+    <h1 class="page-heading">Admin Dashboard</h1>
+  </div>
+  <div class="row text-right">
+    <%= link_to "Manage Dealerships", dealerships_path, :class => "btn btn-info" %>
+    <%= link_to "Push Notifications", push_notifications_path, :class => "btn btn-warning" %>
+  </div>
+
+  <div class="row" style="padding: 2rem 0">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item active">
+        <a class="nav-link" href="#moderator" role="tab" data-toggle="tab">Moderators</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#sales_rep" role="tab" data-toggle="tab">Sales Reps</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#service_rep" role="tab" data-toggle="tab">Service Reps</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#customer" role="tab" data-toggle="tab">Customers</a>
+      </li>
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content" style= "background-color: white; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; border-radius: 0rem 0rem .25rem .25rem">
+      <div role="tabpanel" class="tab-pane fade in active" id="moderator">
+        <%= render "partials/moderators_table" %>
+      </div>
+      <!-- END MODERATORS -->
+      <!-- BEGIN SALES REP -->
+      <div role="tabpanel" class="tab-pane fade" id="sales_rep">
+        <%= render "partials/sales_reps_table" %>
+      </div>
+      <!-- END SALES REP -->
+      <!-- BEGIN SERVICE REP -->
+      <div role="tabpanel" class="tab-pane fade" id="service_rep">
+        <%= render "partials/service_reps_table" %>
+      </div>
+      <!-- END SERVICE REP -->
+      <div role="tabpanel" class="tab-pane fade" id="customer">
+        <%= render "partials/customers_table" %>
+      </div>
+      <!-- <div role="tabpanel" class="tab-pane fade" id="references">ccc</div> -->
+    </div>
+  </div>
+</div>

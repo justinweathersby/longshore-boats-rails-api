@@ -1,0 +1,57 @@
+<div class="col-sm-12" style="padding:0">
+  <!-- BEGIN BORDERED TABLE PORTLET-->
+  <div class="portlet light portlet-fit ">
+      <!-- <div class="portlet-title">
+          <div class="caption" style="width:100%; text-align:center !important;">
+              <span class="caption-subject sbold uppercase" style="color: #455A64 !important;">Moderators</span>
+          </div>
+      </div> -->
+      <div class="portlet-body" style="padding-top: 15px;">
+          <div class="table-scrollable table-scrollable-borderless" style="overflow: visible !imporant;">
+              <table class="table table-striped table-bordered table-hover table-checkable order-column" id="moderators_table">
+                  <thead>
+                      <tr class="uppercase" >
+                          <th style=" color: #455A64"> # </th>
+                          <th style=" color: #455A64"> Email </th>
+                          <th style=" color: #455A64"> Name </th>
+                          <th style=" color: #455A64"> Dealership </th>
+                          <th style=" color: #455A6A"> Since </th>
+                          <th style=" color: #455A64"> Actions </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <% @moderators.each_with_index  do | moderator, index| %>
+                      <tr>
+                          <td><%=  index+1 %></td>
+                          <td><%=  moderator.email %></td>
+                          <td><%=  moderator.name %></td>
+                          <td><%=  Dealership.with_role(:moderator, moderator).first.name %></td>
+                          <td><%=  moderator.created_at.strftime("%m/%d/%Y at %I:%M%p") %></td>
+                          <td>
+                            <div class="actions" style="text-align:center">
+                              <div class="btn-group">
+                                  <a class="btn dark btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" style="text-decoration: none;"> Actions
+                                      <i class="fa fa-angle-down"></i>
+                                  </a>
+                                  <ul class="dropdown-menu pull-right">
+                                    <li>
+                                      <%= link_to 'Edit',  edit_moderator_path(moderator) %>
+                                      <!-- <%= link_to 'Remove',  moderator, method: :delete, data: {confirm: "Are you sure?"} %> -->
+                                    </li>
+                                  </ul>
+                              </div>
+                          </div>
+                         </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+              </table>
+
+              <div class="row" style="text-align:center">
+                <%= link_to 'Add Moderator', new_moderator_url, :class=>"btn btn-outline btn-sm active btn-blue", :style=>"border-radius: 5px !important; margin-top:10px; font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif'; text-shadow:none; font-variant:none; width: 92%; margin-top:30px" %>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- END BORDERED TABLE PORTLET-->
+</div>

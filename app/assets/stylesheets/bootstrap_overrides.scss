@@ -1,0 +1,32 @@
+
+//** Background color for `<body>`.
+// $body-bg: #5ed5e5 !default;
+//
+//
+// a {
+//    &:visited {
+//      color: #fff;
+//      text-decoration: none;
+//    }
+//  }
+
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ 
+
+.dropdown-menu > li > a{
+  text-decoration: none;
+}
+
+.nav-tabs > li > a{
+  color: rgba(0, 0, 0, 0.44);
+  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.nav-tabs > li.active > a{
+  // color: #5bc0de !important;
+  // letter-spacing: 1.5px;
+}

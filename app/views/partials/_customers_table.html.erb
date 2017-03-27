@@ -1,0 +1,31 @@
+<div class="col-sm-12" style="padding:0">
+  <div class="portlet light portlet-fit ">
+      <div class="portlet-body" style="padding-top: 15px;">
+          <div class="table-scrollable table-scrollable-borderless" style="overflow: visible !imporant;">
+              <table class="table table-striped table-bordered table-hover table-checkable order-column" id="customers_table">
+                  <thead>
+                      <tr class="uppercase" >
+                          <th style=" color: #455A64"> # </th>
+                          <th style=" color: #455A64"> Email </th>
+                          <th style=" color: #455A64"> Name </th>
+                          <th style=" color: #455A64"> Dealership </th>
+                          <th style=" color: #455A6A"> Since </th>
+                          <!-- <th style=" color: #455A64"> Actions </th> -->
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <% @customers.each_with_index  do | customer, index| %>
+                      <tr>
+                          <td><%=  index+1 %></td>
+                          <td><%=  customer.email %></td>
+                          <td><%=  customer.name %></td>
+                          <td><%=  customer.dealership.name if customer.dealership  %></td>
+                          <td><%=  customer.created_at.strftime("%m/%d/%Y at %I:%M%p") %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
